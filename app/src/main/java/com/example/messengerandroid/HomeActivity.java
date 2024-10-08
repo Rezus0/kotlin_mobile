@@ -2,6 +2,7 @@ package com.example.messengerandroid;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private static final String TAG = "HomeActivity";
+
     private RecyclerView rvChats;
     private ChatAdapter chatAdapter;
     private List<Chat> chatList;
@@ -23,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_home);
         rvChats = findViewById(R.id.rvChats);
         rvChats.setLayoutManager(new LinearLayoutManager(this));
@@ -57,5 +61,41 @@ public class HomeActivity extends AppCompatActivity {
         chats.add(new Chat("Петр Петров", "Отправил файлы.", "Вчера", R.drawable.profile));
         chats.add(new Chat("Петр Петров", "Отправил файлы.", "Вчера", R.drawable.profile));
         return chats;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 }
