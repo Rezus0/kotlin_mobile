@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!-- res/values/themes.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Базовая тема приложения -->
+    <style name="Theme.MessengerApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Настройка цветов, шрифтов и других атрибутов -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorSecondary">@color/purple_500</item>
+        <!-- Добавьте другие настройки по необходимости -->
+    </style>
+</resources>
