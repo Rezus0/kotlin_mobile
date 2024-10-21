@@ -74,7 +74,6 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Кнопка Зарегистрироваться -->
     <Button
         android:id="@+id/btnRegisterSignUp"
         android:layout_width="0dp"
