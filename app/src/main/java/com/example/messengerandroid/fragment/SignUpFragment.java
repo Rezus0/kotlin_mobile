@@ -1,51 +1,54 @@
-package com.example.messengerandroid;
+package com.example.messengerandroid.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.messengerandroid.MainActivity;
+import com.example.messengerandroid.R;
 import com.example.messengerandroid.model.User;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpFragment extends Fragment {
 
-    private static final String TAG = "SignUpActivity";
+    private static final String TAG = "SignUpFragment";
     private EditText etUsername, etEmailSignUp, etPasswordSignUp;
     private Button btnRegisterSignUp;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_sign_up, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         Log.d(TAG, "onCreate");
-        setContentView(R.layout.activity_sign_up);
 
-        etUsername = findViewById(R.id.etUsername);
-        etEmailSignUp = findViewById(R.id.etEmailSignUp);
-        etPasswordSignUp = findViewById(R.id.etPasswordSignUp);
-        btnRegisterSignUp = findViewById(R.id.btnRegisterSignUp);
+        etUsername = view.findViewById(R.id.etUsername);
+        etEmailSignUp = view.findViewById(R.id.etEmailSignUp);
+        etPasswordSignUp = view.findViewById(R.id.etPasswordSignUp);
+        btnRegisterSignUp = view.findViewById(R.id.btnRegisterSignUp);
 
-        btnRegisterSignUp.setOnClickListener(view -> {
+        btnRegisterSignUp.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();
             String email = etEmailSignUp.getText().toString().trim();
             String password = etPasswordSignUp.getText().toString().trim();
 
             if (validateInput(username, email, password)) {
                 User user = new User(username, email, password);
-
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("username", username);
-                resultIntent.putExtra("email", email);
-                resultIntent.putExtra("password", password);
-
-                resultIntent.putExtra("user", user);
-                setResult(RESULT_OK, resultIntent);
-                finish();
+                ((MainActivity) requireActivity()).navigateToSignInWithUser(user);
             }
         });
     }
