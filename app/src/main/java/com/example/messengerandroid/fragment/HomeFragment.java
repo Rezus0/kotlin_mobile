@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.messengerandroid.R;
+import com.example.messengerandroid.databinding.ActivityHomeBinding;
+import com.example.messengerandroid.databinding.ActivitySignUpBinding;
 import com.example.messengerandroid.model.Chat;
 import com.example.messengerandroid.model.ChatAdapter;
 
@@ -23,25 +25,26 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
 
-    private RecyclerView rvChats;
+    private ActivityHomeBinding binding;
+
     private ChatAdapter chatAdapter;
     private List<Chat> chatList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_home, container, false);
+        binding = ActivityHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onCreate");
-        rvChats = view.findViewById(R.id.rvChats);
-        rvChats.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvChats.setLayoutManager(new LinearLayoutManager(getContext()));
         chatList = getDummyChats();
         chatAdapter = new ChatAdapter(chatList);
-        rvChats.setAdapter(chatAdapter);
+        binding.rvChats.setAdapter(chatAdapter);
     }
 
     private List<Chat> getDummyChats() {

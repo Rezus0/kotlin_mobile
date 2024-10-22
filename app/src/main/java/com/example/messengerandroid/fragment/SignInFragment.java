@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messengerandroid.MainActivity;
 import com.example.messengerandroid.R;
+import com.example.messengerandroid.databinding.ActivitySignInBinding;
 import com.example.messengerandroid.model.User;
 
 import java.util.HashMap;
@@ -26,15 +27,15 @@ public class SignInFragment extends Fragment {
 
     private static final String TAG = "SignInFragment";
 
-    private EditText etEmail, etPassword;
-    private Button btnSignIn, btnRegister;
+    private ActivitySignInBinding binding;
 
     private HashMap<String, String> users = new HashMap<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_sign_in, container, false);
+        binding = ActivitySignInBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -42,24 +43,19 @@ public class SignInFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onCreate");
 
-        etEmail = view.findViewById(R.id.etEmail);
-        etPassword = view.findViewById(R.id.etPassword);
-        btnSignIn = view.findViewById(R.id.btnSignIn);
-        btnRegister = view.findViewById(R.id.btnRegister);
-
         if (getArguments() != null) {
-            User user = (User) getArguments().getSerializable("user");
+            User user = SignInFragmentArgs.fromBundle(getArguments()).getUser();
             if (user != null) {
                 users.put(user.getEmail(), user.getPassword());
-                etEmail.setText(user.getEmail());
+                binding.etEmail.setText(user.getEmail());
                 Toast.makeText(getActivity(), "Регистрация успешна!\nИмя: " + user.getUsername()
                         + "\nEmail: " + user.getEmail(), Toast.LENGTH_SHORT).show();
             }
         }
 
-        btnSignIn.setOnClickListener(v -> {
-            String emailInput = etEmail.getText().toString().trim();
-            String passwordInput = etPassword.getText().toString().trim();
+        binding.btnSignIn.setOnClickListener(v -> {
+            String emailInput = binding.etEmail.getText().toString().trim();
+            String passwordInput = binding.etPassword.getText().toString().trim();
 
             if (validateInput(emailInput, passwordInput)) {
                 if (passwordInput.equals(users.get(emailInput))) {
@@ -70,27 +66,27 @@ public class SignInFragment extends Fragment {
             }
         });
 
-        btnRegister.setOnClickListener(v -> ((MainActivity) requireActivity()).navigateToSignUp());
+        binding.btnRegister.setOnClickListener(v -> ((MainActivity) requireActivity()).navigateToSignUp());
     }
 
     private boolean validateInput(String email, String password) {
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Введите email");
+            binding.etEmail.setError("Введите email");
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Некорректный формат email");
+            binding.etEmail.setError("Некорректный формат email");
             return false;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Введите пароль");
+            binding.etPassword.setError("Введите пароль");
             return false;
         }
 
         if (password.length() < 6) {
-            etPassword.setError("Пароль должен содержать минимум 6 символов");
+            binding.etPassword.setError("Пароль должен содержать минимум 6 символов");
             return false;
         }
 

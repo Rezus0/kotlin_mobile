@@ -16,18 +16,21 @@ import androidx.fragment.app.Fragment;
 
 import com.example.messengerandroid.MainActivity;
 import com.example.messengerandroid.R;
+import com.example.messengerandroid.databinding.ActivityOnboardBinding;
+import com.example.messengerandroid.databinding.ActivitySignUpBinding;
 import com.example.messengerandroid.model.User;
 
 public class SignUpFragment extends Fragment {
 
     private static final String TAG = "SignUpFragment";
-    private EditText etUsername, etEmailSignUp, etPasswordSignUp;
-    private Button btnRegisterSignUp;
+
+    private ActivitySignUpBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_sign_up, container, false);
+        binding = ActivitySignUpBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -36,15 +39,10 @@ public class SignUpFragment extends Fragment {
 
         Log.d(TAG, "onCreate");
 
-        etUsername = view.findViewById(R.id.etUsername);
-        etEmailSignUp = view.findViewById(R.id.etEmailSignUp);
-        etPasswordSignUp = view.findViewById(R.id.etPasswordSignUp);
-        btnRegisterSignUp = view.findViewById(R.id.btnRegisterSignUp);
-
-        btnRegisterSignUp.setOnClickListener(v -> {
-            String username = etUsername.getText().toString().trim();
-            String email = etEmailSignUp.getText().toString().trim();
-            String password = etPasswordSignUp.getText().toString().trim();
+        binding.btnRegisterSignUp.setOnClickListener(v -> {
+            String username = binding.etUsername.getText().toString().trim();
+            String email = binding.etEmailSignUp.getText().toString().trim();
+            String password = binding.etPasswordSignUp.getText().toString().trim();
 
             if (validateInput(username, email, password)) {
                 User user = new User(username, email, password);
@@ -55,27 +53,27 @@ public class SignUpFragment extends Fragment {
 
     private boolean validateInput(String username, String email, String password) {
         if (TextUtils.isEmpty(username)) {
-            etUsername.setError("Введите имя пользователя");
+            binding.etUsername.setError("Введите имя пользователя");
             return false;
         }
 
         if (TextUtils.isEmpty(email)) {
-            etEmailSignUp.setError("Введите email");
+            binding.etEmailSignUp.setError("Введите email");
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmailSignUp.setError("Некорректный формат email");
+            binding.etEmailSignUp.setError("Некорректный формат email");
             return false;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPasswordSignUp.setError("Введите пароль");
+            binding.etPasswordSignUp.setError("Введите пароль");
             return false;
         }
 
         if (password.length() < 6) {
-            etPasswordSignUp.setError("Пароль должен содержать минимум 6 символов");
+            binding.etPasswordSignUp.setError("Пароль должен содержать минимум 6 символов");
             return false;
         }
 
