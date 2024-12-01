@@ -42,7 +42,6 @@ public class SignInFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onCreate");
-
         if (getArguments() != null) {
             User user = SignInFragmentArgs.fromBundle(getArguments()).getUser();
             if (user != null) {

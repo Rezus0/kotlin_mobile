@@ -2,25 +2,12 @@ package com.example.messengerandroid;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.messengerandroid.fragment.HomeFragment;
-import com.example.messengerandroid.fragment.OnboardFragment;
-import com.example.messengerandroid.fragment.SignInFragment;
-import com.example.messengerandroid.fragment.SignInFragmentDirections;
-import com.example.messengerandroid.fragment.SignUpFragment;
 import com.example.messengerandroid.fragment.SignUpFragmentDirections;
 import com.example.messengerandroid.model.User;
 
@@ -62,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToHome() {
-        navController.navigate(R.id.homeFragment);
+        navController.navigate(R.id.characterFragment);
     }
 }

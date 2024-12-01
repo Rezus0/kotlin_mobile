@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Заголовок -->
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="0dp"
@@ -19,7 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingBottom="24dp"/>
 
-    <!-- Поле ввода Имени Пользователя -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUsername"
         android:layout_width="0dp"
@@ -37,7 +35,6 @@
             android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Поле ввода Email -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailSignUp"
         android:layout_width="0dp"
@@ -55,7 +52,6 @@
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Поле ввода Пароля -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordSignUp"
         android:layout_width="0dp"

@@ -17,7 +17,7 @@
         android:label="SignInFragment">
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/characterFragment" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -42,7 +42,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.messengerandroid.fragment.HomeFragment"
+        android:id="@+id/characterFragment"
+        android:name="com.example.messengerandroid.fragment.CharacterFragment"
         android:label="HomeFragment" />
 </navigation>
