@@ -16,7 +16,7 @@
         android:name="com.example.messengerandroid.fragment.SignInFragment"
         android:label="SignInFragment">
         <action
-            android:id="@+id/action_signInFragment_to_homeFragment"
+            android:id="@+id/action_signInFragment_to_characterFragment"
             app:destination="@id/characterFragment" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -42,7 +42,22 @@
     </fragment>
 
     <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.messengerandroid.fragment.SettingsFragment"
+        android:label="SettingsFragment">
+        <action
+            android:id="@+id/action_settingsFragment_to_characterFragment"
+            app:destination="@id/characterFragment" >
+        </action>
+    </fragment>
+
+    <fragment
         android:id="@+id/characterFragment"
         android:name="com.example.messengerandroid.fragment.CharacterFragment"
-        android:label="HomeFragment" />
+        android:label="CharacterFragment" >
+        <action
+            android:id="@+id/action_characterFragment_to_settingsFragment"
+            app:destination="@id/characterFragment" >
+        </action>
+    </fragment>
 </navigation>

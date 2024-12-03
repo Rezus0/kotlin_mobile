@@ -1,69 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="?attr/colorSurface">
 
+    <!-- Input Fields and Button -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Horizontal Layout for Page and Limit -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
+            <!-- Page Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Page"
-                app:boxStrokeColor="?attr/colorOnSurface"
-                app:boxStrokeWidth="2dp"
-                app:counterEnabled="false"
-                app:counterMaxLength="10"
-                app:counterTextColor="?attr/colorOnSurfaceVariant"
-                app:helperTextTextColor="?attr/colorOnSurfaceVariant"
+                app:boxStrokeColor="?attr/colorOutline"
                 app:hintTextColor="?attr/colorOnSurfaceVariant">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPage"
                     android:layout_width="match_parent"
+                    android:background="?attr/backgroundColor"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Limit Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:hint="Limit"
-                app:boxStrokeColor="?attr/colorOnSurface"
-                app:boxStrokeWidth="2dp"
-                app:counterEnabled="false"
-                app:counterMaxLength="10"
-                app:counterTextColor="?attr/colorOnSurfaceVariant"
-                app:helperTextTextColor="?attr/colorOnSurfaceVariant"
+                app:boxStrokeColor="?attr/colorOutline"
                 app:hintTextColor="?attr/colorOnSurfaceVariant">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLimit"
                     android:layout_width="match_parent"
+                    android:background="?attr/backgroundColor"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
-
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
 
+        <!-- Load Characters Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLoadCharacters"
             android:layout_width="match_parent"
@@ -71,12 +68,14 @@
             android:layout_marginTop="16dp"
             android:text="Load Characters"
             app:cornerRadius="8dp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
             app:elevation="4dp"
             app:strokeColor="?attr/colorOutline"
             app:strokeWidth="1dp" />
-
     </LinearLayout>
 
+    <!-- RecyclerView for Displaying Characters -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -84,9 +83,24 @@
         android:clipToPadding="false"
         android:padding="16dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="?attr/backgroundColor"
+        app:menu="@menu/bottom_navigation_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:itemTextColor="?attr/colorPrimaryFixed"
+        app:itemIconTint="?attr/colorPrimaryFixed"
+        app:itemIconSize="30dp"
+        app:itemRippleColor="?attr/colorPrimary"
+        app:itemActiveIndicatorStyle="?attr/colorPrimary"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

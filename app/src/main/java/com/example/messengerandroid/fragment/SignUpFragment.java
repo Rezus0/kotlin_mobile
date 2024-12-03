@@ -1,5 +1,6 @@
 package com.example.messengerandroid.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class SignUpFragment extends Fragment {
     private static final String TAG = "SignUpFragment";
 
     private ActivitySignUpBinding binding;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -46,6 +48,8 @@ public class SignUpFragment extends Fragment {
 
             if (validateInput(username, email, password)) {
                 User user = new User(username, email, password);
+                sharedPreferences = requireContext().getSharedPreferences("app_prefs", requireContext().MODE_PRIVATE);
+                sharedPreferences.edit().putString("nickname_key", username).apply();
                 ((MainActivity) requireActivity()).navigateToSignInWithUser(user);
             }
         });

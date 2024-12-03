@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MessengerAndroid</string>
+    <string name="dark_theme">Application Theme</string>
+    <string name="enter_nickname">Enter Nickname</string>
+    <string name="delete_file">Delete File</string>
+    <string name="restore_file">Restore File</string>
+    <string name="file_status_exist">File Exist</string>
+    <string name="file_status_removed">File Removed</string>
 </resources>

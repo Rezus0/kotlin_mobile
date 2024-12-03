@@ -4,25 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?attr/colorSurface">
 
     <TextView
         android:id="@+id/tvSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Вход"
+        android:textColor="?attr/colorPrimaryFixed"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingBottom="24dp"/>
+        android:paddingBottom="24dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Email"
+        app:boxBackgroundColor="?attr/colorSurface"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@id/tvSignIn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,8 +36,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
+            android:background="?attr/backgroundColor"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,6 +49,9 @@
         android:layout_height="wrap_content"
         android:hint="Пароль"
         app:passwordToggleEnabled="true"
+        app:boxBackgroundColor="?attr/colorSurface"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@id/tilEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,26 +61,35 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:background="?attr/backgroundColor"
+            android:inputType="textPassword"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Войти"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/tilPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Регистрация"
+        android:backgroundTint="?attr/colorSecondary"
+        android:textColor="?attr/colorOnSecondary"
+        app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/btnSignIn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

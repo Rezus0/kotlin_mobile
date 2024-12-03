@@ -1,5 +1,6 @@
 package com.example.messengerandroid;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +15,14 @@ import com.example.messengerandroid.model.User;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
+    private SharedPreferences sharedPreferences;
+    private static final String THEME_KEY = "theme_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        boolean isDarkTheme = sharedPreferences.getBoolean(THEME_KEY, false);
+        setAppTheme(isDarkTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -48,7 +54,25 @@ public class MainActivity extends AppCompatActivity {
         navController.navigate(R.id.signUpFragment);
     }
 
-    public void navigateToHome() {
+    public void navigateToCharacters() {
         navController.navigate(R.id.characterFragment);
+    }
+
+    public void navigateToSettings() {
+        navController.navigate(R.id.settingsFragment);
+    }
+
+    public void changeTheme(boolean isDarkTheme) {
+        sharedPreferences.edit().putBoolean(THEME_KEY, isDarkTheme).apply();
+        setAppTheme(isDarkTheme);
+        recreate();
+    }
+
+    private void setAppTheme(boolean isDarkTheme) {
+        if (isDarkTheme) {
+            setTheme(R.style.Theme_MessengerApp_Dark);
+        } else {
+            setTheme(R.style.Theme_MessengerApp_Light);
+        }
     }
 }

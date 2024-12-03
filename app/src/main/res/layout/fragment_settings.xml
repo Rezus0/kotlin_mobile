@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface"
+    android:padding="16dp">
+
+    <!-- Content Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_nickname"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNickname"
+                android:layout_width="match_parent"
+                android:background="?attr/backgroundColor"
+                android:layout_height="wrap_content"
+                android:autofillHints="Username"
+                android:inputType="text"
+                android:importantForAutofill="yes" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_theme"
+            android:textColor="?attr/colorSecondaryFixed"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:thumbTint="?attr/colorPrimary"
+            android:trackTint="?attr/colorPrimaryContainer" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvFileStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/file_status_exist"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="?attr/colorSecondaryFixed"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnDeleteFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_file"
+            android:backgroundTint="?attr/colorError"
+            android:textColor="?attr/colorOnError"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnRestoreFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/restore_file"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_marginStart="8dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="?attr/backgroundColor"
+        app:menu="@menu/bottom_navigation_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:itemTextColor="?attr/colorPrimaryFixed"
+        app:itemIconTint="?attr/colorPrimaryFixed"
+        app:itemIconSize="30dp"
+        app:itemRippleColor="?attr/colorPrimary"
+        app:itemActiveIndicatorStyle="?attr/colorPrimary"/>
+
+</LinearLayout>

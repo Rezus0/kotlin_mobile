@@ -1,10 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><!-- res/values/themes.xml -->
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Базовая тема приложения -->
-    <style name="Theme.MessengerApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Настройка цветов, шрифтов и других атрибутов -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorSecondary">@color/purple_500</item>
-        <!-- Добавьте другие настройки по необходимости -->
+<resources>
+    <style name="Theme.MessengerApp.Light" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorError">@color/error_light</item>
+        <item name="colorPrimaryFixed">@color/text_primary_light</item>
+        <item name="backgroundColor">@color/text_primary_dark</item>
+        <item name="colorSecondaryFixed">@color/text_secondary_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.MessengerApp.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_dark</item>
+        <item name="colorSecondary">@color/secondary_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorError">@color/error_dark</item>
+        <item name="colorPrimaryFixed">@color/text_primary_dark</item>
+        <item name="backgroundColor">@color/text_secondary_dark</item>
+        <item name="colorSecondaryFixed">@color/text_secondary_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

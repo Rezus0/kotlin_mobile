@@ -1,5 +1,7 @@
 package com.example.messengerandroid.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Character {
@@ -58,4 +60,18 @@ public class Character {
     public void setPlayedBy(List<String> playedBy) {
         this.playedBy = playedBy;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + (name != null ? name : "Unknown") + '\'' +
+                ", culture='" + (culture != null ? culture : "Unknown") + '\'' +
+                ", born='" + (born != null ? born : "Unknown") + '\'' +
+                ", titles=" + (titles != null && !titles.isEmpty() ? String.join(", ", titles) : "Unknown") +
+                ", aliases=" + (aliases != null && !aliases.isEmpty() ? String.join(", ", aliases) : "Unknown") +
+                ", playedBy=" + (playedBy != null && !playedBy.isEmpty() ? String.join(", ", playedBy) : "Unknown") +
+                '}';
+    }
+
 }
