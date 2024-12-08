@@ -6,4 +6,11 @@
     <string name="restore_file">Restore File</string>
     <string name="file_status_exist">File Exist</string>
     <string name="file_status_removed">File Removed</string>
+    <string name="registration_success">Registration successful! Welcome %1$s (%2$s)</string>
+    <string name="invalid_email_password">Invalid email or password</string>
+    <string name="enter_email">Please enter your email</string>
+    <string name="enter_username">Please enter your username</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="enter_password">Please enter your password</string>
+    <string name="password_too_short">Password must be at least 6 characters long</string>
 </resources>
