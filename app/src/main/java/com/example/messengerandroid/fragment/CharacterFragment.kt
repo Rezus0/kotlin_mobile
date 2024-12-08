@@ -3,19 +3,24 @@ package com.example.messengerandroid.fragment
 import android.app.Activity
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.messengerandroid.MainActivity
 import com.example.messengerandroid.R
 import com.example.messengerandroid.databinding.ActivityCharacterBinding
-import com.example.messengerandroid.model.Character
+import com.example.messengerandroid.db.AppDatabaseInstance
+import com.example.messengerandroid.db.Character
+import com.example.messengerandroid.db.CharacterRepository
 import com.example.messengerandroid.model.CharacterAdapter
-import com.example.messengerandroid.service.CharacterRepository
+import com.example.messengerandroid.service.ApiRepository
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -24,7 +29,8 @@ class CharacterFragment : Fragment() {
 
     private var binding: ActivityCharacterBinding? = null
     private var characterAdapter: CharacterAdapter? = null
-    private lateinit var repository: CharacterRepository
+    private lateinit var apiRepository: ApiRepository
+    private lateinit var characterRepository: CharacterRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,10 +43,13 @@ class CharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val database = AppDatabaseInstance.getInstance(requireContext())
+        characterRepository = CharacterRepository(database.characterDao())
+        loadCharactersFromDb()
 
         binding?.apply {
             recyclerView.layoutManager = LinearLayoutManager(context)
-            repository = CharacterRepository()
+            apiRepository = ApiRepository()
 
             btnLoadCharacters.setOnClickListener { v ->
                 val pageText = etPage.text.toString()
@@ -75,6 +84,16 @@ class CharacterFragment : Fragment() {
         }
     }
 
+    private fun loadCharactersFromDb() {
+        lifecycleScope.launch {
+            characterRepository.getAllCharacters().collect { characters ->
+                characterAdapter = CharacterAdapter(characters)
+                Log.d("TAG", "$characters from updateActivity")
+                binding?.recyclerView?.adapter = characterAdapter
+            }
+        }
+    }
+
     private fun loadCharacters(page: Int, pageSize: Int) {
         if (page < 0) {
             binding?.etPage?.error = "Только положительное число"
@@ -85,11 +104,18 @@ class CharacterFragment : Fragment() {
             return
         }
 
-        repository.getCharacters(page, pageSize, object : CharacterRepository.CharacterCallback {
+        apiRepository.getCharacters(page, pageSize, object : ApiRepository.CharacterCallback {
             override fun onSuccess(characters: List<Character>) {
-                characterAdapter = CharacterAdapter(characters)
+                lifecycleScope.launch {
+                    characterRepository.saveCharactersIntoDb(characters)
+                }
                 saveCharactersToFile(characters)
-                binding?.recyclerView?.adapter = characterAdapter
+                if (characterAdapter == null) {
+                    characterAdapter = CharacterAdapter(characters)
+                    binding?.recyclerView?.adapter = characterAdapter
+                } else {
+                    characterAdapter?.submitList(characters)
+                }
             }
 
             override fun onError(t: Throwable) {

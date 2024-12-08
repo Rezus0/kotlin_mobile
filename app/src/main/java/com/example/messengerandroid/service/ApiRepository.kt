@@ -1,8 +1,8 @@
 package com.example.messengerandroid.service
 
-import com.example.messengerandroid.model.Character;
+import com.example.messengerandroid.db.Character;
 
-class CharacterRepository {
+class ApiRepository {
 
     private val apiService: ApiService = ApiClient.getClient().create(ApiService::class.java)
 

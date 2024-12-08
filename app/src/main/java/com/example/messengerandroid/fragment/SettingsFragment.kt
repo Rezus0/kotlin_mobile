@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.messengerandroid.MainActivity
 import com.example.messengerandroid.R
 import com.example.messengerandroid.databinding.FragmentSettingsBinding
+import com.example.messengerandroid.db.AppDatabaseInstance
+import com.example.messengerandroid.db.CharacterRepository
 import com.example.messengerandroid.service.getNickname
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +25,7 @@ class SettingsFragment : Fragment() {
 
     private var binding: FragmentSettingsBinding? = null
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var characterRepository: CharacterRepository
 
     companion object {
         private const val THEME_KEY = "theme_key"
@@ -38,6 +42,9 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val database = AppDatabaseInstance.getInstance(requireContext())
+        characterRepository = CharacterRepository(database.characterDao())
 
         sharedPreferences = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         loadTheme()
@@ -68,6 +75,12 @@ class SettingsFragment : Fragment() {
                         true
                     }
                     else -> true
+                }
+            }
+
+            btnDeleteFromDb.setOnClickListener {
+                lifecycleScope.launch {
+                    characterRepository.clearCharacters()
                 }
             }
 

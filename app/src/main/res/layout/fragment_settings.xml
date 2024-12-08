@@ -43,6 +43,15 @@
             android:trackTint="?attr/colorPrimaryContainer" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnDeleteFromDb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_from_db"
+        android:backgroundTint="?attr/colorError"
+        android:textColor="?attr/colorOnError"
+        android:layout_marginBottom="16dp" />
+
     <TextView
         android:id="@+id/tvFileStatus"
         android:layout_width="match_parent"

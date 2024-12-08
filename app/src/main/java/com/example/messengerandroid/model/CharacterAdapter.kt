@@ -4,10 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.messengerandroid.databinding.ItemCharacterBinding
+import com.example.messengerandroid.db.Character
 
 class CharacterAdapter(
-    private val characterList: List<Character>
+    private var characterList: List<Character>
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+
+    fun submitList(newList: List<Character>) {
+        characterList = newList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val binding = ItemCharacterBinding.inflate(

@@ -12,5 +12,6 @@
     <string name="enter_username">Please enter your username</string>
     <string name="invalid_email_format">Invalid email format</string>
     <string name="enter_password">Please enter your password</string>
+    <string name="delete_from_db">Clear characters list</string>
     <string name="password_too_short">Password must be at least 6 characters long</string>
 </resources>
